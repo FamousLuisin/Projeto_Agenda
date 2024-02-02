@@ -12,7 +12,7 @@ class ContactForm(forms.ModelForm):
     # first_name = forms.CharField(
     #     widget=forms.TextInput(
     #         attrs={
-    #             'class':'classe-d',
+    #             'class':'classe-a',
     #             'placeholder':'Primeiro nome',
     #         }
     #     ),
@@ -20,18 +20,25 @@ class ContactForm(forms.ModelForm):
     #     help_text='texto de ajuda',
     # )
     
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # Forma 2 de trabalhar com um campo de input
+    # Forma 2 de trabalhar com um campo de input
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)  
         # self.fields['first_name'].widget.attrs.update({
         #     'class':'classe-c',
         #     'placeholder':'Primeiro nome'
         # })
+    
+    picture = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'accept': 'image/*',
+            }
+        )
+    )
 
     class Meta:
         model = models.Contact
-        fields = ('first_name', 'last_name', 'phone', 'email', 'description', 'category')
+        fields = ('first_name', 'last_name', 'phone', 'email', 'description', 'category', 'picture')
 
         # Forma 3 de trabalhar com um campo de input
         # widgets = {
